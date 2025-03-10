@@ -2,6 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Task
 from .serializers import TaskSerializer
+from django.http import HttpResponse
 
 @api_view(['GET'])
 def get_tasks(request):
@@ -16,3 +17,7 @@ def create_task(request):
         serializer.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
+
+
+def home(request):
+    return HttpResponse("Welcome to the API!")
